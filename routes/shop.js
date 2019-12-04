@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', (req, res, next) => {
     console.log('shop.js' , adminData.products)
-    res.render('shop', {prods: adminData.products, docTitle: "Shop"})
+    res.render('shop', {prods: adminData.products, pageTitle: "Shop", path: "/"})
     //res.sendFile(path.join(rootDir, 'views', 'shop.html'))
 })
 
