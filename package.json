@@ -1,0 +1,25 @@
+{
+  "name": "nodejsfirstapp",
+  "version": "1.0.0",
+  "description": "Tutorial",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --exec babel-node app.js"
+  },
+  "author": "Mikolaj Niechcial",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "prettier": "^1.19.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.4",
+    "@babel/core": "^7.7.4",
+    "@babel/node": "^7.7.4",
+    "@babel/preset-env": "^7.7.4",
+    "nodemon": "^2.0.1",
+    "rimraf": "^3.0.0"
+  }
+}
