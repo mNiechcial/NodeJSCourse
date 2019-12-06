@@ -5,8 +5,10 @@ import shopRoutes from './routes/shop';
 import rootDir from './util/path'
 import path from 'path';
 import { render } from 'pug';
+import expressHbs from 'express-handlebars';
 
 const app = express();
+app.engine('handlebars', expressHbs({layoutsDir: 'views/layouts/', defaultLayout: 'main-layout'}));
 app.set('view engine', 'pug');//global define
 app.set('views', 'views')//not required, default route
 app.use(urlencoded({extended: false}));
