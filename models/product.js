@@ -1,15 +1,37 @@
-const products = [];
+const fs = require('fs');
+const path = require('path');
 
-export class Product {
+const dataPath = path.join( 
+     path.dirname(process.mainModule.filename),  
+    'data',
+    'products.json'
+)
+
+const helperGetProductFromFile = callback => {
+    fs.readFile(dataPath, (err, fileContent) => {
+        if(err){
+            callback([]);
+        }
+        else {
+            callback(JSON.parse(fileContent))
+        }
+    })
+}
+module.exports = class Product {
     constructor(title) {
         this.title = title
     }
 
     save() {
-        products.push(this);
+        helperGetProductFromFile(products => {
+            products.push(this);
+            fs.writeFile(dataPath, JSON.stringify(products), err => {
+                console.log(err);
+            })
+        })
     }
 
-    static fetchAll() {
-        return products;
+    static fetchAll(callback) {
+        helperGetProductFromFile(callback);
     }
 }
