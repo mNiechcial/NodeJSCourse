@@ -18,9 +18,9 @@ const helperGetProductFromFile = callback => {
     })
 }
 module.exports = class Product {
-    constructor(title, iamgeUrl, description, price) {
+    constructor(title, imageUrl, description, price) {
         this.title = title;
-        this.iamgeUrl = iamgeUrl;
+        this.imageUrl = imageUrl;
         this.description = description;
         this.price = price
     }
