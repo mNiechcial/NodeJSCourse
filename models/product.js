@@ -7,7 +7,7 @@ const dataPath = path.join(
     'products.json'
 )
 
-const helperGetProductFromFile = callback => {
+const helperGetProductsFromFile = callback => {
     fs.readFile(dataPath, (err, fileContent) => {
         if(err){
             callback([]);
@@ -22,11 +22,12 @@ module.exports = class Product {
         this.title = title;
         this.imageUrl = imageUrl;
         this.description = description;
-        this.price = price
+        this.price = price;
     }
 
     save() {
-        helperGetProductFromFile(products => {
+        helperGetProductsFromFile(products => {
+            this.id = Math.random().toString();
             products.push(this);
             fs.writeFile(dataPath, JSON.stringify(products), err => {
                 console.log(err);
@@ -35,6 +36,13 @@ module.exports = class Product {
     }
 
     static fetchAll(callback) {
-        helperGetProductFromFile(callback);
+        helperGetProductsFromFile(callback);
+    }
+
+    static findById(id, callback) {
+        helperGetProductsFromFile(products => {
+            const product = products.find(prod => prod.id === id);
+            callback(product);
+        })
     }
 }
