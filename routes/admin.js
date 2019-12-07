@@ -10,6 +10,6 @@ router.post('/edit-product/', adminController.postEditProduct);
 router.get('/admin-products', adminController.getProducts);
 // /admin/add-product => POST
 router.post("/add-product", adminController.postAddProduct);
-
+router.post('/delete-product', adminController.postDeleteProduct)
 
 export default router;
