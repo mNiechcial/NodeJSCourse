@@ -46,10 +46,21 @@ module.exports = class Cart {
 
             updatedCart.products = updatedCart.products.filter( prod => prod.id !== id);
             updatedCart.totalPrice = updatedCart.totalPrice - productPrice * productQty;
-            
+
             fs.writeFile(dataPath, JSON.stringify(updatedCart), (err) => {
                 console.log(err);
             });
+        })
+    }
+
+    static getCart(callBack) {
+        fs.readFile(dataPath, (err, fileContent) => {
+        const cart = JSON.parse(fileContent);
+        if(err)
+        {
+            callBack(null);
+        }
+        callBack(cart);
         })
     }
 }
