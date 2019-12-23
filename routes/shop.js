@@ -1,7 +1,7 @@
-import { Router } from "express";
+const express = require("express");
 const shopController = require("../controllers/shopController");
 
-const router = Router();
+const router = express.Router();
 
 router.get("/", shopController.getIndex);
 router.get('/products', shopController.getProducts);
@@ -12,4 +12,4 @@ router.post('/cart-delete-item', shopController.postCartDeleteItem)
 router.get('/checkout', shopController.getCheckout);
 router.get('/orders', shopController.getOrders);
 
-export default router;
+module.exports = router;

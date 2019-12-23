@@ -1,11 +1,13 @@
-import express from "express";
-import { urlencoded } from "body-parser";
-import adminRoutes from "./routes/admin";
-import shopRoutes from "./routes/shop";
-import rootDir from "./util/path";
-import path from "path";
-import errorController from "./controllers/errorController";
-import { request } from "http";
+
+const adminRoutes = require('./routes/admin');
+const shopRoutes = require('./routes/shop');
+const path = require('path');
+
+const express = require('express');
+const bodyParser = require('body-parser');
+
+const errorController = require('./controllers/errorController');
+
 
 const sequelize = require("./util/database");
 const Product = require("./models/product");
@@ -17,7 +19,7 @@ const app = express();
 app.set("view engine", "ejs"); //global define
 app.set("views", "views"); //not required, default route
 
-app.use(urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -35,13 +37,12 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
+Product.belongsTo(User, { constraints: true, onDelete: 'CASCADE' });
 User.hasMany(Product);
 User.hasOne(Cart);
-
 Cart.belongsTo(User);
-Cart.belongsToMany(Product, {through: CartItem});
-Product.belongsToMany(Cart, {through: CartItem});
+Cart.belongsToMany(Product, { through: CartItem });
+Product.belongsToMany(Cart, { through: CartItem });
 
 
 
@@ -64,5 +65,5 @@ sequelize
         app.listen(3000);
     })
     .catch(err => {
-        console.log(err);
+        //console.log(err);
     });

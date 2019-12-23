@@ -12,4 +12,4 @@ router.get('/admin-products', adminController.getProducts);
 router.post("/add-product", adminController.postAddProduct);
 router.post('/delete-product', adminController.postDeleteProduct)
 
-export default router;
+module.exports = router;
